@@ -4,7 +4,7 @@
 //  </copyright>
 // 
 //  <summary>
-//    Bug tracker 
+//    Bug class 
 //  </summary>
 // 
 //  <date>19-08-2020</date>

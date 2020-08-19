@@ -4,7 +4,7 @@
 //  </copyright>
 // 
 //  <summary>
-//    TODO .......
+//    Stateless state machine example 
 //  </summary>
 // 
 //  <date>19-08-2020</date>
@@ -20,22 +20,42 @@ namespace Nenov.StatelessExample
   {
     public static void Main(string[] args)
     {
-      Console.WriteLine("**** Bug tracker state machine example ****");
-
-      Console.WriteLine("Create First bug");
-      var bug = new Bug("First bug");
-      bug.Assign("Joe");
-      Console.WriteLine("Defer");
-      bug.Defer();
-      bug.Assign("Harry");
-      bug.Assign("Fred");
-      Console.WriteLine("Close bug");
-      bug.Close();
-
+      // Execute bug tracker example
+      ExecuteBugTrackerExample();
       
-      //Console.WriteLine($"{Environment.NewLine}State machine dotGraph: {bug.ToDotGraph()}");
-
+      // Console.WriteLine($"{Environment.NewLine}State machine dotGraph: {bug.ToDotGraph()}");
       Console.ReadKey(false);
+    }
+
+    /// <summary>
+    /// Execute bug tracker example
+    /// </summary>
+    private static void ExecuteBugTrackerExample()
+    {
+      Console.WriteLine("**** Bug tracker state machine example ****");
+      Console.WriteLine();
+
+      var bug = new Bug("First bug");
+
+      bug.Assign("Niko");
+      Console.WriteLine();
+
+      bug.Assign("Ivan");
+      Console.WriteLine();
+
+      bug.Defer();
+      Console.WriteLine();
+
+      bug.Assign("Harry");
+      Console.WriteLine();
+      
+      bug.Assign("Fred");
+      Console.WriteLine();
+
+      bug.Assign("Arnold");
+      Console.WriteLine();
+
+      bug.Close();
     }
   }
 }

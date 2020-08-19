@@ -84,7 +84,7 @@ namespace Nenov.StatelessExample.BugTracker
     {
       if (_assignee != null && assignee != _assignee)
       {
-        SendMessage?.Invoke("Don't forget to help the new employee!");
+        SendMessage?.Invoke($"{_assignee} don't forget to help {assignee}, the new employee!");
       }
 
       _assignee = assignee;
@@ -95,7 +95,7 @@ namespace Nenov.StatelessExample.BugTracker
     /// </summary>
     private void OnDeassigned()
     {
-      SendMessage?.Invoke("You're off the hook.");
+      SendMessage?.Invoke($"You're off the hook. The current assigner is {_assignee}.");
     }
 
     /// <summary>
@@ -103,6 +103,7 @@ namespace Nenov.StatelessExample.BugTracker
     /// </summary>
     private void OnDeferred()
     {
+      SendMessage?.Invoke($"Call deferred action. The current assigner is {_assignee}.");
       _assignee = null;
     }
 
@@ -112,6 +113,7 @@ namespace Nenov.StatelessExample.BugTracker
     /// <param name="assignee"></param>
     public void Assign(string assignee)
     {
+      SendMessage?.Invoke($"Fire trigger {_assignTrigger.Trigger} with parameter: {assignee}");
       // This is how a trigger with parameter is used,
       // the parameter is supplied to the state machine as a parameter to the Fire method.
       _machine.Fire(_assignTrigger, assignee);
@@ -127,6 +129,7 @@ namespace Nenov.StatelessExample.BugTracker
     /// </summary>
     public void Defer()
     {
+      SendMessage?.Invoke("Fire trigger defer");
       _machine.Fire(BugTrigger.Defer);
     }
 
@@ -135,7 +138,8 @@ namespace Nenov.StatelessExample.BugTracker
     /// </summary>
     public void Close()
     {
-      _machine.Fire(BugTrigger.Close);
+      SendMessage?.Invoke("Fire trigger close");
+     _machine.Fire(BugTrigger.Close);
     }
 
     /// <summary>
